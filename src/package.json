@@ -1,0 +1,20 @@
+{
+  "name": "myDapp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile": "truffle compile",
+    "deploy-dev": "truffle deploy",
+    "deploy-alfajores": "truffle deploy --network alfajores",
+    "deploy-celo": "truffle deploy --network celo"
+  },
+  "keywords": [],
+  "author": "Joe Nyzio",
+  "license": "ISC",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.6.0",
+    "@truffle/hdwallet-provider": "^2.0.3",
+    "dotenv": "^16.4.5"
+  }
+}

@@ -1,0 +1,6 @@
+# dependencies
+/src/node_modules
+# Mac users
+.DS_Store
+#hidden files
+/src/.env

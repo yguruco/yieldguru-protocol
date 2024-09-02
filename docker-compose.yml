@@ -1,0 +1,70 @@
+version: '3.9'
+
+services:
+  ganache:
+    image: trufflesuite/ganache-cli:latest
+    command: --host 0.0.0.0 --port 8545
+    ports:
+      - "8545:8545"
+    networks:
+      - devnet
+
+  truffle:
+    build:
+      context: ./src
+      dockerfile: Dockerfile
+    container_name: truffle
+    volumes:
+      - ./src:/app
+    networks:
+      - devnet
+    depends_on:
+      - ganache
+    command: truffle version
+
+networks:
+  devnet:
+    driver: bridge
+
+
+# version: '3.9'
+
+# services:
+#   truffle:
+#     build:
+#       context: ./src
+#       dockerfile: Dockerfile
+#     container_name: truffle
+#     volumes:
+#       - .:/app
+#     networks:
+#       - yieldguru-protocol
+#     depends_on:
+#       - ganache
+#     command: truffle version
+
+#   # ganache-gui:
+#   #   build:
+#   #     context: ./src
+#   #     dockerfile: Dockerfile.ganache
+#   #   container_name: ganache-gui
+#   #   ports:
+#   #     - "7545:7545"
+#   #   networks:
+#   #     - yieldguru-protocol
+#   #   depends_on:
+#   #     - ganache
+#   #   command: truffle migrate --network development
+
+#   ganache:
+#     image: trufflesuite/ganache-cli:v6.12.2
+#     container_name: ganache-container
+#     ports:
+#       - "8545:8545"
+#     networks:
+#       - yieldguru-protocol
+#     command: ganache-cli -h 0.0.0.0 -p 8545 -i 5777 -e 10000 -l 8000000
+
+# networks:
+#   yieldguru-protocol:
+#     driver: bridge
